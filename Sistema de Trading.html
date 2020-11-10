@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Ejemplo de animaciones interactivas en HTML5</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@0.2.1/dist/confetti.browser.min.js"> </script>
+    <style lang="css">
+       a{text-decoration: none}
+
+        header{
+            font-size: 26px;
+            border-bottom: 2px solid #888;
+            padding: 25px;
+            color: #eeeeee;
+        }
+
+        body{
+            text-align: center;
+            font-family: Verdana;
+            background-color:#1D1E33;
+        }
+
+
+
+        #titulo{
+            
+        }
+
+        .unidad{
+            border-radius: 15px;
+            margin-top: 25px;
+            background: #E2DFD8;
+            width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 25px;
+        }
+        .titulo_unidad{
+            text-align: left;
+            font-size: 30px;
+        }
+        .unidad ul{
+
+            text-align: left;
+            list-style: none;
+
+        }
+        .unidad li{
+
+            padding-top: 8px;
+            transition: background-color 0.5s ease-out;
+        }
+        .unidad li:hover{
+            background-color: #767e89;
+            transition: zoom;
+        }
+        .temas{
+            font-size: 23px;
+        }
+
+    </style>
+
+</head>
+
+<body link="black" vlink="black" alink="black">
+    <header>
+        <h1 id="titulo">Sistemas de Trading</h1>
+        <div id="creditos">por only Bruno je</div>
+    </header>
+
+    <div class="unidad">
+
+        <div class="titulo_unidad">
+            <b>Compra</b>
+        </div>
+
+        <ul class="temas">
+            <li>
+                <input type="checkbox" onclick="window.tirar_confetti()" />
+                <a target="_blank">
+                    Tendencia alcista semanal
+                </a>
+            </li>
+            <li>
+                <input type="checkbox" onclick="window.nuevoconfeti()"  />
+                <a target="_blank">
+                    Tendencia alcista diaria
+                </a>
+            </li>
+            <li>
+                <input type="checkbox" onclick="window.tirar_confetti()"  />
+                <a target="_blank">
+                    Arriba de la MM200
+                </a>
+            </li>
+            <li>
+                <input type="checkbox" onclick="window.nuevoconfeti()"  />
+                <a target="_blank">
+                    Arriba de la EMA20
+                </a>
+            </li>
+            <li>
+                <input type="checkbox" onclick="window.tirar_confetti()"  />
+                    Soporte/Resistencia
+
+            <ul>
+                <li>
+                    <input type="checkbox" onclick="window.nuevoconfeti()"  />
+                    <a target="_blank">
+                Soporte Alcanzado
+                    </a>
+
+                </li>
+                <li>
+                    <input type="checkbox" onclick="window.tirar_confetti()"  />
+                    <a target="_blank">
+                        Resistencia Alcanzada
+                    </a>
+                </li>
+            </ul>
+
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="unidad">
+
+        <div class="titulo_unidad">
+            <b>Confirmacion</b>:
+
+            <ul class="temas">
+                <li >
+                    <input type="checkbox" onclick="window.nuevoconfeti()" />
+                    <a target="_blank">
+                        Dos Velas Alcistas Diarias
+                    </a>
+                </li>
+                <li>
+                    <input type="checkbox" onclick="window.tirar_confetti()"  />
+                    <a target="_blank">
+                        Ratio 3 a 1
+                    </a>
+                </li>
+                <li>
+                    <input type="checkbox" onclick="window.nuevoconfeti()"  />
+                    <a target="_blank">
+                       Rsi Arriba50
+                    </a>
+                </li>
+                <li>
+                    <input type="checkbox" onclick="window.tirar_confetti()"  />
+                    <a target="_blank">
+                        Nube Ichimoku por Debajo
+                    </a>
+                </li>
+                <li>
+                    <input type="checkbox" onclick="window.nuevoconfeti()" />
+                    <a target="_blank">
+                        Stop Loss
+                    </a>
+                </li>
+                <li>
+                    <input type="checkbox" onclick="window.tirar_confetti()"  />
+                    <a target="_blank">
+                        Take Proffit
+                    </a>
+                </li>
+                <li>
+                    <input type="checkbox" onclick="window.nuevoconfeti()" />
+                    <a target="_blank">
+                        Macd
+                    </a>
+
+            </ul>
+
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+        var myCanvas = document.createElement('canvas');
+        document.body.appendChild(myCanvas);
+
+        var myConfetti = confetti.create(myCanvas, { resize: true });
+
+        window.tirar_confetti = function(){
+            var end = Date.now() + (1.5 * 1000);
+
+            var interval = setInterval(function() {
+                if (Date.now() > end) {
+                    return clearInterval(interval);
+                }
+                confetti({
+                    startVelocity: 30,
+                    spread: 360,
+                    ticks: 60,
+                    origin: {
+                        x: Math.random(),
+                        y: Math.random() - 0.2
+                    }
+                });
+            }, 200);
+        };
+
+    </script>
+
+    <script type="text/javascript">
+
+        var myCanvas2 = document.createElement('canvas');
+        document.body.appendChild(myCanvas2);
+
+        var myConfetti = confetti.create(myCanvas2, { resize: true });
+
+        window.nuevoconfeti = function(){
+        var end = Date.now() + (3 * 1000);
+        var colors = ['#bb0000', '#ffffff'];
+
+        (function frame() {
+            confetti({
+                particleCount: 2,
+                angle: 60,
+                spread: 55,
+                origin: {
+                    x: 0
+                },
+                colors: colors
+            });
+            confetti({
+                particleCount: 2,
+                angle: 120,
+                spread: 55,
+                origin: {
+                    x: 1
+                },
+                colors: colors
+            });
+
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+        }());
+    }</script>
+
+</body>
+
+</html>
